@@ -12,7 +12,6 @@ int* getCommand(char incom[100]);
 int pipeiCommand(char incom[100], char pipeiCom[100]);//指令匹配函数 目前只支持一行中 一种指令只出现一次
 /////////////////////
 int* getCommand(char incom[100]) {//返回数组地址
-	cout << incom << endl;
 	//压缩空格：多个空格合为一个
 	int spaceTimes = 0;
 	for (int i = 0; incom[i] != 0; i++) {
@@ -29,7 +28,7 @@ int* getCommand(char incom[100]) {//返回数组地址
 		}
 	}
 	///压缩空格结束
-	cout << incom;////////////////////////////////////////////////////////////TEST!!!!!!
+	cout << "空格压缩后>>" << incom << endl;
 	for (int com = 0; com < 20; com++) {//逐个指令依次匹配
 		int place = pipeiCommand(incom, Command[com]);//返回匹配位置
 		if (place != -1) {//如果匹配上了
@@ -40,6 +39,7 @@ int* getCommand(char incom[100]) {//返回数组地址
 }
 
 int pipeiCommand(char incom[100], char pipeiCom[100]) {//指令匹配函数 目前只支持一行中 一种指令只出现一次
+
 	int lenIncom=0, lenPipeiCom=0;
 	for (int i = 0; incom[i] != 0; i++) {
 		lenIncom++;
@@ -59,4 +59,10 @@ int pipeiCommand(char incom[100], char pipeiCom[100]) {//指令匹配函数 目前只支持
 		}
 	}
 	return -1;
+}
+
+void initCommand() {//初始化命令数组
+	strcpy(Command[0], "set language to English");
+	strcpy(Command[1], "set language to Chinese");
+	strcpy(Command[2], "help");
 }
