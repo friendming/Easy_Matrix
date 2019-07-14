@@ -8,10 +8,11 @@ using namespace std;
 char Command[20][100];
 int commandPlace[100]={-1};
 /////////////////////
-int getCommand(char incom[100]);
+int* getCommand(char incom[100]);
 int pipeiCommand(char incom[100], char pipeiCom[100]);//指令匹配函数 目前只支持一行中 一种指令只出现一次
 /////////////////////
-int getCommand(char incom[100]) {
+int* getCommand(char incom[100]) {//返回数组地址
+	cout << incom << endl;
 	//压缩空格：多个空格合为一个
 	int spaceTimes = 0;
 	for (int i = 0; incom[i] != 0; i++) {
@@ -20,10 +21,11 @@ int getCommand(char incom[100]) {
 		}
 		else {
 			if (spaceTimes >= 2) {//他前面有好几个空格的话
-				for (int j = i-spaceTimes; incom[j-1]!=0; j++) {//后面的填补一波到前面去
-					incom[j] = incom[j + spaceTimes];
+				for (int j = i-spaceTimes+1; incom[j]!=0; j++) {//后面的填补一波到前面去
+					incom[j] = incom[j + spaceTimes-1];
 				}
 			}
+			spaceTimes = 0;//复位0个空格
 		}
 	}
 	///压缩空格结束
@@ -34,7 +36,7 @@ int getCommand(char incom[100]) {
 			commandPlace[place] = com;//在相应的位置（该指令在字符串中字符的位置）记录匹配到了第几个指令//之后进行压缩！！！
 		}
 	}
-	return 0;
+	return commandPlace;
 }
 
 int pipeiCommand(char incom[100], char pipeiCom[100]) {//指令匹配函数 目前只支持一行中 一种指令只出现一次
