@@ -10,8 +10,10 @@ int commandPlace[100]={-1};
 /////////////////////
 int* getCommand(char incom[100]);
 int pipeiCommand(char incom[100], char pipeiCom[100]);//指令匹配函数 目前只支持一行中 一种指令只出现一次
+void initCommand();
 /////////////////////
 int* getCommand(char incom[100]) {//返回数组地址
+	initCommand();//初始化
 	//压缩空格：多个空格合为一个
 	int spaceTimes = 0;
 	for (int i = 0; incom[i] != 0; i++) {
@@ -62,7 +64,7 @@ int pipeiCommand(char incom[100], char pipeiCom[100]) {//指令匹配函数 目前只支持
 }
 
 void initCommand() {//初始化命令数组
-	strcpy(Command[0], "set language to English");
-	strcpy(Command[1], "set language to Chinese");
-	strcpy(Command[2], "help");
+	strcpy_s(Command[0], "set language to English");
+	strcpy_s(Command[1], "set language to Chinese");
+	strcpy_s(Command[2], "help");
 }

@@ -4,6 +4,8 @@
 
 using namespace std;
 
+void showHelp();
+
 int language=0;
 
 int main() {
