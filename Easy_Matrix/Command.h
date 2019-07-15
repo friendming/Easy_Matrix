@@ -13,6 +13,10 @@ int pipeiCommand(char incom[100], char pipeiCom[100]);//Ö¸ÁîÆ¥Åäº¯Êı Ä¿Ç°Ö»Ö§³ÖÒ
 void initCommand();
 /////////////////////
 int* getCommand(char incom[100]) {//·µ»ØÊı×éµØÖ·
+	//Çå¿ÕÊı×é
+	for (int i = 0; i < 100; i++) {
+		commandPlace[i] = -1;
+	}
 	initCommand();//³õÊ¼»¯
 	//Ñ¹Ëõ¿Õ¸ñ£º¶à¸ö¿Õ¸ñºÏÎªÒ»¸ö
 	int spaceTimes = 0;
@@ -30,41 +34,48 @@ int* getCommand(char incom[100]) {//·µ»ØÊı×éµØÖ·
 		}
 	}
 	///Ñ¹Ëõ¿Õ¸ñ½áÊø
-	cout << "¿Õ¸ñÑ¹Ëõºó>>" << incom << endl;
-	for (int com = 0; com < 20; com++) {//Öğ¸öÖ¸ÁîÒÀ´ÎÆ¥Åä
-		int place = pipeiCommand(incom, Command[com]);//·µ»ØÆ¥ÅäÎ»ÖÃ
+	//cout << "¿Õ¸ñÑ¹Ëõºó>>" << incom << endl;
+	for (int com = 0; com < 4; com++) {//Öğ¸öÖ¸ÁîÒÀ´ÎÆ¥Åä ÓĞ¼¸¸öÖ¸Áî com¾ÍĞ¡ÓÚ¼¸
+		int place = pipeiCommand(incom, Command[com]);//·µ»ØÆ¥Åä×Ö·û´®ÆğÊ¼Î»ÖÃ
 		if (place != -1) {//Èç¹ûÆ¥ÅäÉÏÁË
 			commandPlace[place] = com;//ÔÚÏàÓ¦µÄÎ»ÖÃ£¨¸ÃÖ¸ÁîÔÚ×Ö·û´®ÖĞ×Ö·ûµÄÎ»ÖÃ£©¼ÇÂ¼Æ¥Åäµ½ÁËµÚ¼¸¸öÖ¸Áî//Ö®ºó½øĞĞÑ¹Ëõ£¡£¡£¡
 		}
 	}
+
 	return commandPlace;
 }
 
-int pipeiCommand(char incom[100], char pipeiCom[100]) {//Ö¸ÁîÆ¥Åäº¯Êı Ä¿Ç°Ö»Ö§³ÖÒ»ĞĞÖĞ Ò»ÖÖÖ¸ÁîÖ»³öÏÖÒ»´Î
+int pipeiCommand(char incom[100], char pipeiCom[100]) {
 
-	int lenIncom=0, lenPipeiCom=0;
+	//cout << incom << endl << pipeiCom << endl;
+
+	int lenIncom = 0, lenPipeiCom = 0;
 	for (int i = 0; incom[i] != 0; i++) {
 		lenIncom++;
 	}
 	for (int i = 0; pipeiCom[i] != 0; i++) {
 		lenPipeiCom++;
 	}
+
+	//cout << "lenIncom=" << lenIncom << " lenpipeicom=" << lenPipeiCom << endl;
+
 	int i, j;
 	for (i = 0; i <= lenIncom - lenPipeiCom; ++i) {
 		for (j = 0; j < lenPipeiCom; ++j) {
 			if (incom[i + j] != pipeiCom[j]) {
-				break;
+				break;//¸Ã×Ö·ûÆ¥ÅäÊ§°Ü ÏÂÒ»¸ö×Ö·û
 			}
 		}
 		if (j == lenPipeiCom) {
-			return i;//·µ»ØÖ¸ÁîµÄÊ××ÖÄ¸Î»ÖÃ
+			return i;//³É¹¦ ·µ»ØÆğÊ¼×Ö·û
 		}
 	}
-	return -1;
+	return -1;//È«²¿Ê§°Ü ·µ»Ø-1
 }
 
 void initCommand() {//³õÊ¼»¯ÃüÁîÊı×é
-	strcpy_s(Command[0], "set language to English");
-	strcpy_s(Command[1], "set language to Chinese");
+	strcpy_s(Command[0], "set language to Chinese");
+	strcpy_s(Command[1], "set language to English");
 	strcpy_s(Command[2], "help");
+	strcpy_s(Command[3], "end");
 }
