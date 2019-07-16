@@ -18,6 +18,7 @@ int* getCommand(char incom[100]) {//返回数组地址
 		commandPlace[i] = -1;
 	}
 	initCommand();//初始化
+	int comnum = 0;//得到的命令数目
 	//压缩空格：多个空格合为一个
 	int spaceTimes = 0;
 	for (int i = 0; incom[i] != 0; i++) {
@@ -38,8 +39,13 @@ int* getCommand(char incom[100]) {//返回数组地址
 	for (int com = 0; com < 4; com++) {//逐个指令依次匹配 有几个指令 com就小于几
 		int place = pipeiCommand(incom, Command[com]);//返回匹配字符串起始位置
 		if (place != -1) {//如果匹配上了
+			comnum++;//命令数目+1
 			commandPlace[place] = com;//在相应的位置（该指令在字符串中字符的位置）记录匹配到了第几个指令//之后进行压缩！！！
 		}
+	}
+
+	if (comnum == 0) {
+		//函数匹配 及 数值计算 变量赋值 等等
 	}
 
 	return commandPlace;

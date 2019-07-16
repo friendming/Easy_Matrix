@@ -4,7 +4,7 @@
 
 using namespace std;
 
-void showHelp();
+void showHelp();//Êä³ö°ïÖú
 
 int language=0;
 
