@@ -14,17 +14,16 @@ int main() {
 	int findCommand[20];
 	showHelp();
 	while (1) {//循环
+		cout << ">> ";
 		cin.getline(inputCommand, 100);//用getline可以读取空格
 		//cout << inputCommand << endl;
 		*findCommand = *getCommand(inputCommand);
 
 		if (findCommand[0] == 0) {
-			cout << ">> ";
 			cout << "语言 = 中文 (部分功能未适配中文 请见谅)" << endl;
 			language = 1;
 		}
 		else if (findCommand[0] == 1) {
-			cout << ">> ";
 			cout << "Language = English" << endl;
 			language = 0;
 		}
@@ -35,7 +34,6 @@ int main() {
 			exit(0);
 		}
 		else {
-			cout << ">> ";
 			if (language == 0) {
 				cout << "Unknown command." << endl;
 			}
@@ -50,31 +48,19 @@ int main() {
 
 void showHelp() {
 	if (language == 0) {
-		cout << ">> ";
 		cout << "Help:" << endl;
-		cout << ">> ";
 		cout << "Easy Matrix||You can solve easy matrix problems easily!||Produced by QM" << endl;
-		cout << ">> ";
 		cout << "1-Case-sensitive!" << endl;
-		cout << ">> ";
 		cout << "2-Enter \"set language to Chinese\"to change language." << endl;
-		cout << ">> ";
 		cout << "3-Enter \"help\"to show help." << endl;
-		cout << ">> ";
 		cout << "4-Enter \"end\"to close EasyMatrix." << endl;
 	}
 	else if (language == 1) {
-		cout << ">> ";
 		cout << "帮助：" << endl;
-		cout << ">> ";
 		cout << "Easy Matrix||轻松解决简单的矩阵问题！||作者：QM" << endl;
-		cout << ">> ";
 		cout << "1-大小写敏感！" << endl;
-		cout << ">> ";
 		cout << "2-输入 \"set language to English\"切换语言。" << endl;
-		cout << ">> ";
 		cout << "3-输入 \"help\"显示帮助。" << endl;
-		cout << ">> ";
 		cout << "4-输入 \"end\"关闭程序。" << endl;
 	}
 }
